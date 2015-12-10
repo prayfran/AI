@@ -97,8 +97,8 @@ public class Game {
 			{
 				prin("NEXT TURN");
 				prin("");
-				prin("This is player's row "+p.currRow);
 				p.actionPhase();
+				prin("This is player's col "+p.currCol);
 				p.drawPhase();
 				p.discardPhase();
 				flood();

@@ -22,15 +22,15 @@ public class Player{
 				hand.add(card);
 			}
 		}
-		currRow = 4;
-		currCol = 0;
+		currRow = 3;
+		currCol = 4;
 		game.board.board[currRow][currCol].playerEnter();
 	}
 	
 	//This is the turn method for the player. this is where you'll put your heuristic
 	public void actionPhase()
 	{
-		moveUp();
+		moveLeft();
 	}
 
 	public void drawPhase()
@@ -84,7 +84,8 @@ public class Player{
 	}
 	public boolean moveDown()
 	{
-		if(this.currRow==this.game.board.board[0].length-1){return false;}
+		if(this.currRow==3 && this.currCol==4){return false;}
+		if(this.currRow==this.game.board.board.length-1){return false;}
 		if(this.game.board.board[this.currRow+1][this.currCol].status=="S"){return false;}
 		this.game.board.board[this.currRow][this.currCol].PlayerLeave();
 		this.game.board.board[this.currRow+1][this.currCol].playerEnter();
@@ -93,11 +94,22 @@ public class Player{
 	}
 	public boolean moveLeft()
 	{
-		return false;
+		if(this.currCol==0){return false;}
+		if(this.game.board.board[this.currRow][this.currCol-1].status=="S"){return false;}
+		this.game.board.board[this.currRow][this.currCol].PlayerLeave();
+		this.game.board.board[this.currRow][this.currCol-1].playerEnter();
+		this.currCol--;
+		return true;
 	}
 	public boolean moveRight()
 	{
-		return false;
+		if(this.currRow==4 && this.currCol==3){return false;}
+		if(this.currCol==this.game.board.board[0].length-1){return false;}
+		if(this.game.board.board[this.currRow][this.currCol+1].status=="S"){return false;}
+		this.game.board.board[this.currRow][this.currCol].PlayerLeave();
+		this.game.board.board[this.currRow][this.currCol+1].playerEnter();
+		this.currCol++;
+		return true;
 	}
 	
 	public boolean shoreUpCurrent()
