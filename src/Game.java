@@ -16,6 +16,9 @@ public class Game {
 	public int blue=2;
 	public int black=2;
 	public int gold=2;
+	public boolean foolFull=false;
+	public int foolRow;
+	public int foolCol;
 	
 	public boolean running = true;
 	
@@ -26,6 +29,17 @@ public class Game {
 		treasureDeck = Deck.getTreasureDeck();
 		captured = new ArrayList<String>();
 		players = new ArrayList<Player>();
+		for(int i=0;i<board.board.length-1;i++)
+		{
+			for(int j=0;j<board.board[0].length-1;j++)
+			{
+				if(board.board[i][j].name.equals("Fools Landing"))
+				{
+					foolRow=i;
+					foolCol=j;
+				}
+			}
+		}
 		for(int i =0; i < numbPlayers; i++)
 		{
 			String goal;
@@ -98,6 +112,10 @@ public class Game {
 	{
 		return (blue==0 && !captured.contains("blue"))|| (red==0 && !captured.contains("red"))|| (black==0 && !captured.contains("black")) || (gold==0 && ! captured.contains("gold"));
 	}
+	public boolean winning()
+	{
+		return captured.size()==4 && foolFull;
+	}
 	public boolean drown(Player p)
 	{
 		if(p.moveUp()){p.moveDown();return false;}
@@ -127,6 +145,7 @@ public class Game {
 				prin("NEXT TURN");
 				prin("");
 				p.actionPhase();
+				if(winning()){prin("WININGINGIGNGINGFJSDLGFASHJDKFASHJ"); running=false;break;}
 				p.drawPhase();
 				p.discardPhase();
 				flood();
