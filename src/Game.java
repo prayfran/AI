@@ -52,7 +52,7 @@ public class Game {
 	}
 	
 
-
+	public void prin(Object o){System.out.println(o);}
 	public void waterRises()
 	{
 		floodDeck.Reshuffle();
@@ -95,6 +95,9 @@ public class Game {
 		{
 			for(Player p : players)
 			{
+				prin("NEXT TURN");
+				prin("");
+				prin("This is player's row "+p.currRow);
 				p.actionPhase();
 				p.drawPhase();
 				p.discardPhase();

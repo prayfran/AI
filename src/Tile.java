@@ -1,5 +1,6 @@
 public class Tile{
 	String name;
+	int players=0;
 	int x;
 	int y;
 	String status;
@@ -40,6 +41,17 @@ public class Tile{
 	@Override
 	public String toString()
 	{
+		if(players>0){return "P";}
 		return this.status;
+	}
+	
+	//these methods are meant to show that the player is on this space, and overrides the previous status
+	public void playerEnter()
+	{
+		players++;
+	}
+	public void PlayerLeave()
+	{
+		players--;
 	}
 }

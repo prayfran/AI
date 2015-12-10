@@ -66,7 +66,7 @@ public class Board{
 	}
 	
 	public boolean Shoreup(int x, int y){
-		if(board[x][y].status == "HF"){
+		if(board[x][y].status == "H"){
 			board[x][y].status = "D";
 			return true;
 		}
@@ -80,7 +80,7 @@ public class Board{
 				for(int d = 0; d < tiles.length; d++)
 					if(board[i][j] != null && board[i][j].name.equals(tiles[d]))
 					{
-						if(board[i][j].status == "HF")
+						if(board[i][j].status == "H")
 						{
 							System.out.println(tiles[d] + " Sunk!");
 							board[i][j].status = "S";
@@ -89,7 +89,7 @@ public class Board{
 						else
 						{
 							System.out.println(tiles[d] + " Flooded");
-							board[i][j].status = "HF";
+							board[i][j].status = "H";
 						}
 					}
 			}
