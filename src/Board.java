@@ -52,7 +52,7 @@ public class Board{
 			}
 		}
 	}
-	
+	public void prin(Object o){System.out.println(o);}
 	Tile[][] board;
 	public void print(){
 		for( int i = 0; i < board[0].length; i++)
@@ -85,6 +85,10 @@ public class Board{
 							System.out.println(tiles[d] + " Sunk!");
 							board[i][j].status = "S";
 							game.floodDeck.removeType(tiles[d]);
+							if(board[i][j].name.contains("blue")){game.blue--;prin("LOST A BLUE");}
+							if(board[i][j].name.contains("red")){game.red--;}
+							if(board[i][j].name.contains("black")){game.black--;}
+							if(board[i][j].name.contains("gold")){game.gold--;}
 						}
 						else
 						{

@@ -41,7 +41,11 @@ public class Tile{
 	@Override
 	public String toString()
 	{
-		if(players>0){return "P";}
+		if(players>0)
+		{
+			if(this.status=="S"){return "X";}
+			return "P";
+		}
 		return this.status;
 	}
 	

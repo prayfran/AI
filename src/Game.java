@@ -11,6 +11,11 @@ public class Game {
 	public ArrayList<Player> players;
 	public ArrayList<String> captured;
 	public Board board;
+	boolean loseCondition=false;
+	public int red=2;
+	public int blue=2;
+	public int black=2;
+	public int gold=2;
 	
 	public boolean running = true;
 	
@@ -87,14 +92,27 @@ public class Game {
 		}
 		
 		board.flood(cards);
+		if(loseTreasure()){loseCondition=true;}
 	}
-	
+	public boolean loseTreasure()
+	{
+		return (blue==0 && !captured.contains("blue"))|| (red==0 && !captured.contains("red"))|| (black==0 && !captured.contains("black")) || (gold==0 && ! captured.contains("gold"));
+	}
 	public void Run()
 	{
 		while(running)
 		{
 			for(Player p : players)
 			{
+				if(blue==0)
+				{
+					prin("LOST"); 
+					if(!captured.contains("blue"))
+					{
+						prin("FUCK");
+					}
+				}
+				if(this.loseCondition){prin("GAME OVER");running=false;}
 				prin("NEXT TURN");
 				prin("");
 				p.actionPhase();
