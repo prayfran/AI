@@ -89,6 +89,7 @@ public class Board{
 							if(board[i][j].name.contains("red")){game.red--;}
 							if(board[i][j].name.contains("black")){game.black--;}
 							if(board[i][j].name.contains("gold")){game.gold--;}
+							if(board[i][j].name.equals("Fools Landing")){game.loseCondition=true;}
 						}
 						else
 						{

@@ -98,6 +98,17 @@ public class Game {
 	{
 		return (blue==0 && !captured.contains("blue"))|| (red==0 && !captured.contains("red"))|| (black==0 && !captured.contains("black")) || (gold==0 && ! captured.contains("gold"));
 	}
+	public boolean drown(Player p)
+	{
+		if(p.moveUp()){p.moveDown();return false;}
+		if(p.moveDown()){p.moveUp();return false;}
+		if(p.moveLeft()){p.moveRight();return false;}
+		if(p.moveRight()){p.moveLeft();return false;}
+		prin("YOU DONE DROWNED BITCH");
+		prin("");
+		this.loseCondition=true;
+		return true;
+	}
 	public void Run()
 	{
 		while(running)
@@ -112,14 +123,14 @@ public class Game {
 						prin("FUCK");
 					}
 				}
-				if(this.loseCondition){prin("GAME OVER");running=false;}
+				if(this.loseCondition){prin("GAME OVER");running=false;break;}
 				prin("NEXT TURN");
 				prin("");
 				p.actionPhase();
-				prin("This is player's col "+p.currCol);
 				p.drawPhase();
 				p.discardPhase();
 				flood();
+				drown(p);
 				board.print();
 				if(running == false)
 					break;
