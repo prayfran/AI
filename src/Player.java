@@ -30,7 +30,10 @@ public class Player{
 	//This is the turn method for the player. this is where you'll put your heuristic
 	public void actionPhase()
 	{
-		moveLeft();
+		shoreUpUp();
+		shoreUpDown();
+		shoreUpLeft();
+		shoreUpRight();
 	}
 
 	public void drawPhase()
@@ -111,26 +114,36 @@ public class Player{
 		this.currCol++;
 		return true;
 	}
-	
+	public boolean shoreUp(int row, int col)
+	{
+		if(this.game.board.board[row][col].status=="H"){this.game.board.board[row][col].status="D"; return true;}
+		return false;
+	}
 	public boolean shoreUpCurrent()
 	{
-		return false;
+		return shoreUp(this.currRow,this.currCol);
 	}
 	public boolean shoreUpUp()
 	{
-		return false;
+		if(this.currRow==0){return false;}
+		return shoreUp(this.currRow-1,this.currCol);
 	}
 	public boolean shoreUpDown()
 	{
-		return false;
+		if(this.currRow==3 && this.currCol==4){return false;}
+		if(this.currRow==this.game.board.board.length-1){return false;}
+		return shoreUp(this.currRow+1,this.currCol);
 	}
 	public boolean shoreUpLeft()
 	{
-		return false;
+		if(this.currCol==0){return false;}
+		return shoreUp(this.currRow,this.currCol-1);
 	}
 	public boolean shoreUpRight()
 	{
-		return false;
+		if(this.currRow==4 && this.currCol==3){return false;}
+		if(this.currCol==this.game.board.board[0].length-1){return false;}
+		return shoreUp(this.currRow,this.currCol+1);
 	}
 	
 	public boolean CaptureTreasure(int x, int y, String Color){
